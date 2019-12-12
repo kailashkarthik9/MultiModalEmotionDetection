@@ -4,7 +4,6 @@
 /emovox/teacher_model_analysis/data/
 /emovox/teacher_model_analysis/emovox_logits.npy
 /emovox/teacher_model_analysis/emovox_logits_utterance_major.npy
-/emovox/teacher_model_analysis/emovoxceleb_formatter.py
 /emovox/teacher_model_analysis/formatter.obj
 /emovox/teacher_model_analysis/voxceleb.obj
 /iemocap/data/
