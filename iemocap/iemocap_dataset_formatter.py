@@ -196,8 +196,7 @@ class IemocapFormatter:
         aggregated_data.index = np.arange(1, len(aggregated_data) + 1)
         aggregated_data = aggregated_data[
             ['Utterance', 'Speaker', 'Emotion', 'Session_Number', 'Mocap_Source', 'Dialogue_Type', 'Dialogue_Number',
-             'Speaker',
-             'Utterance_Number', 'StartTime', 'EndTime', 'Emotion_Label']]
+             'Speaker', 'Utterance_Number', 'StartTime', 'EndTime', 'Emotion_Label']]
         aggregated_data.to_csv(target_file, index_label='Sr.No')
 
 
