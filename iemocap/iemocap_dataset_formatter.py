@@ -52,16 +52,26 @@ class IemocapFormatter:
         # Example - Ses01F_impro01_M000 or Ses01F_script01_2_M000
         if 'impro' in utterance_identifier:
             session_number = utterance_identifier[3:5]
+            mocap_source = utterance_identifier[6]
             improvisation_number = utterance_identifier[12:14]
             speaker = utterance_identifier[15]
             utterance_number = utterance_identifier[16:]
-            return session_number, 'improvisation', improvisation_number, speaker, utterance_number
+            return session_number, 'improvisation', improvisation_number, speaker, utterance_number, mocap_source
         else:
             session_number = utterance_identifier[3:5]
+            mocap_source = utterance_identifier[6]
             script_number = utterance_identifier[13:17]
             speaker = utterance_identifier[18]
             utterance_number = utterance_identifier[19:]
-            return session_number, 'script', script_number, speaker, utterance_number
+            return session_number, 'script', script_number, speaker, utterance_number, mocap_source
+
+    @staticmethod
+    def extract_utterance_identifier(session_number, mocap_source, session_type, sub_session_number,
+                                     add_utterance_details=False, speaker=None, utterance_number=None):
+        file_name = 'Ses' + str(session_number) + str(mocap_source) + '_' + str(session_type) + str(sub_session_number)
+        if add_utterance_details:
+            file_name += '_' + str(speaker) + str(utterance_number)
+        return file_name
 
     @staticmethod
     def merge_timing_files(male_utterance_directory, female_utterance_directory, target_directory):
@@ -176,6 +186,8 @@ class IemocapFormatter:
                 lambda x: IemocapFormatter.extract_utterance_ids(x)[3])
             merged_data['Utterance_Number'] = merged_data['Identifier'].apply(
                 lambda x: IemocapFormatter.extract_utterance_ids(x)[4])
+            merged_data['Mocap_Source'] = merged_data['Identifier'].apply(
+                lambda x: IemocapFormatter.extract_utterance_ids(x)[5])
             merged_data = merged_data.drop(columns=['Identifier'])
             if aggregated_data is None:
                 aggregated_data = merged_data
@@ -183,7 +195,8 @@ class IemocapFormatter:
                 aggregated_data = aggregated_data.append(merged_data)
         aggregated_data.index = np.arange(1, len(aggregated_data) + 1)
         aggregated_data = aggregated_data[
-            ['Utterance', 'Speaker', 'Emotion', 'Session_Number', 'Dialogue_Type', 'Dialogue_Number', 'Speaker',
+            ['Utterance', 'Speaker', 'Emotion', 'Session_Number', 'Mocap_Source', 'Dialogue_Type', 'Dialogue_Number',
+             'Speaker',
              'Utterance_Number', 'StartTime', 'EndTime', 'Emotion_Label']]
         aggregated_data.to_csv(target_file, index_label='Sr.No')
 
