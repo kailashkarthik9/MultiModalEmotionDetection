@@ -8,14 +8,16 @@ class MultiModalEmbeddingGenerator:
         self.speech_embeddings = self.get_speech_vectors(speech_vectors_file)
         self.text_embeddings = self.get_text_vectors(text_vectors_files)
 
-    def get_speech_vectors(self, speech_vectors_file):
+    @staticmethod
+    def get_speech_vectors(speech_vectors_file):
         df = pd.read_csv(speech_vectors_file)
         df['xvector'] = df['xvector'].apply(literal_eval)
         df = df[['set', 'dialogue_id', 'utterance_id', 'label', 'xvector']]
         df.columns = ['Dataset_Split', 'Dialogue_ID', 'Utterance_ID', 'Emotion_Label', 'SpeechEmbeddings']
         return df
 
-    def get_text_vectors(self, text_vectors_files):
+    @staticmethod
+    def get_text_vectors(text_vectors_files):
         dev_df = pd.read_csv(text_vectors_files['dev'])
         train_df = pd.read_csv(text_vectors_files['train'])
         test_df = pd.read_csv(text_vectors_files['test'])
@@ -30,15 +32,23 @@ class MultiModalEmbeddingGenerator:
     def get_multimodal_embeddings(self):
         combined_df = pd.merge(self.text_embeddings, self.speech_embeddings,
                                on=['Dataset_Split', 'Dialogue_ID', 'Utterance_ID'])
-        assert len(combined_df) == len(self.text_embeddings)
+        assert len(combined_df) != len(self.text_embeddings)
         assert len(combined_df) == len(self.speech_embeddings)
-        combined_df['Multimodal_Embeddings'] = combined_df[['TextEmbeddings', 'SpeechEmbeddings']].apply(
-            lambda x: x[0].extend(x[1]), axis=1)
-        return combined_df.drop(['TextEmbeddings', 'SpeechEmbeddings'])
+        combined_df['MultimodalEmbeddings'] = combined_df[['TextEmbeddings', 'SpeechEmbeddings']].apply(
+            lambda x: x[0] + x[1], axis=1)
+        combined_df.columns = ['Sr No.', 'Utterance', 'Speaker', 'Emotion', 'Sentiment', 'Dialogue_ID', 'Utterance_ID',
+                               'Season', 'Episode', 'StartTime', 'EndTime', 'Emotion_Label', 'TextEmbeddings',
+                               'Dataset_Split', 'Emotion_Label_y', 'SpeechEmbeddings', 'MultimodalEmbeddings']
+        combined_df = combined_df.drop(['Emotion_Label_y'], axis=1)
+        combined_df = combined_df[
+            ['Sr No.', 'Dataset_Split', 'Dialogue_ID', 'Utterance_ID', 'Season', 'Episode', 'StartTime', 'EndTime',
+             'Utterance', 'Speaker', 'Sentiment', 'Emotion', 'Emotion_Label', 'TextEmbeddings', 'SpeechEmbeddings',
+             'MultimodalEmbeddings']]
+        return combined_df  # .drop(['TextEmbeddings', 'SpeechEmbeddings'], axis=1)
 
     def create_multimodal_embeddings(self, output_file):
         df = self.get_multimodal_embeddings()
-        df.to_csv(output_file)
+        df.to_csv(output_file, index=False)
 
 
 if __name__ == '__main__':

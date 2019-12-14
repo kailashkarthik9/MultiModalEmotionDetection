@@ -1,5 +1,6 @@
 from ast import literal_eval
 
+import numpy as np
 import pandas as pd
 import torch
 import torch.nn as nn
@@ -122,11 +123,29 @@ class TextEmotionClassifier:
         return model
 
 
-if __name__ == '__main__':
+def test_meld():
     batch_size = 128
     meld_train = 'meld/data/train_sent_emo_norm_word_embedded.csv'
     meld_test = 'meld/data/test_sent_emo_norm_word_embedded.csv'
     meld_dev = 'meld/data/dev_sent_emo_norm_word_embedded.csv'
     classifier = TextEmotionClassifier([meld_test], [meld_train], [meld_dev], batch_size)
     model = classifier.get_trained_model()
+
+
+def test_iemocap():
+    batch_size = 128
+    df_session_1 = pd.read_csv('data/Session1_word_embedded.csv')
+    df_session_2 = pd.read_csv('data/Session2_word_embedded.csv')
+    df_session_3 = pd.read_csv('data/Session3_word_embedded.csv')
+    df_session_4 = pd.read_csv('data/Session4_word_embedded.csv')
+    df_session_5 = pd.read_csv('data/Session5_word_embedded.csv')
+    df = pd.concat([df_session_1, df_session_2, df_session_3, df_session_4, df_session_5], ignore_index=True)
+    msk = np.random.rand(len(df)) < 0.8
+    train = df[msk]
+    test = df[~msk]
+    classifier = TextEmotionClassifier([train], [test], [test], batch_size)
+    model = classifier.get_trained_model()
+
+
+if __name__ == '__main__':
     print('ok')
