@@ -52,14 +52,14 @@ class IemocapFormatter:
         # Example - Ses01F_impro01_M000 or Ses01F_script01_2_M000
         if 'impro' in utterance_identifier:
             session_number = utterance_identifier[3:5]
-            mocap_source = utterance_identifier[6]
+            mocap_source = utterance_identifier[5]
             improvisation_number = utterance_identifier[12:14]
             speaker = utterance_identifier[15]
             utterance_number = utterance_identifier[16:]
             return session_number, 'improvisation', improvisation_number, speaker, utterance_number, mocap_source
         else:
             session_number = utterance_identifier[3:5]
-            mocap_source = utterance_identifier[6]
+            mocap_source = utterance_identifier[5]
             script_number = utterance_identifier[13:17]
             speaker = utterance_identifier[18]
             utterance_number = utterance_identifier[19:]
@@ -195,8 +195,8 @@ class IemocapFormatter:
                 aggregated_data = aggregated_data.append(merged_data)
         aggregated_data.index = np.arange(1, len(aggregated_data) + 1)
         aggregated_data = aggregated_data[
-            ['Utterance', 'Speaker', 'Emotion', 'Session_Number', 'Mocap_Source', 'Dialogue_Type', 'Dialogue_Number',
-             'Speaker', 'Utterance_Number', 'StartTime', 'EndTime', 'Emotion_Label']]
+            ['Session_Number', 'Mocap_Source', 'Dialogue_Type', 'Dialogue_Number', 'Utterance_Number', 'StartTime',
+             'EndTime', 'Utterance', 'Speaker', 'Emotion', 'Emotion_Label']]
         aggregated_data.to_csv(target_file, index_label='Sr.No')
 
 

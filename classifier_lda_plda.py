@@ -98,5 +98,5 @@ class LdaPLdaClassifier:
 
 if __name__ == '__main__':
     data_file = 'meld/data/dataset_with_multi_modal_embeddings.csv'
-    classifier = LdaPLdaClassifier(data_file, EmbeddingSource.SPEECH)
+    classifier = LdaPLdaClassifier(data_file, EmbeddingSource.MULTIMODAL)
     classifier.train_and_evaluate_model()
