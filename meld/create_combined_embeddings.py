@@ -3,7 +3,7 @@ from ast import literal_eval
 import pandas as pd
 
 
-class MultiModalEmbeddingGenerator:
+class MultiModalEmbeddingGeneratorMeld:
     def __init__(self, speech_vectors_file, text_vectors_files):
         self.speech_embeddings = self.get_speech_vectors(speech_vectors_file)
         self.text_embeddings = self.get_text_vectors(text_vectors_files)
@@ -58,6 +58,6 @@ if __name__ == '__main__':
         'train': 'data/train_sent_emo_norm_word_embedded.csv',
         'test': 'data/test_sent_emo_norm_word_embedded.csv',
     }
-    generator = MultiModalEmbeddingGenerator(speech_vectors_file_, text_vectors_files_)
+    generator = MultiModalEmbeddingGeneratorMeld(speech_vectors_file_, text_vectors_files_)
     generator.create_multimodal_embeddings('data/dataset_with_multi_modal_embeddings.csv')
     print('ok')
