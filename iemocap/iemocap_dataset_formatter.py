@@ -1,5 +1,6 @@
 import glob
 import os
+import re
 
 import numpy as np
 import pandas as pd
@@ -49,21 +50,37 @@ class IemocapFormatter:
 
     @staticmethod
     def extract_utterance_ids(utterance_identifier):
-        # Example - Ses01F_impro01_M000 or Ses01F_script01_2_M000
+        # Example - Ses01F_impro01_M000 or Ses01F_impro01a_M000 or Ses01F_script01_2_M000 pr Ses05M_script01_1b_F000
         if 'impro' in utterance_identifier:
-            session_number = utterance_identifier[3:5]
-            mocap_source = utterance_identifier[5]
-            improvisation_number = utterance_identifier[12:14]
-            speaker = utterance_identifier[15]
-            utterance_number = utterance_identifier[16:]
-            return session_number, 'improvisation', improvisation_number, speaker, utterance_number, mocap_source
+            if re.search(r'impro.._', utterance_identifier):
+                session_number = utterance_identifier[3:5]
+                mocap_source = utterance_identifier[5]
+                improvisation_number = utterance_identifier[12:14]
+                speaker = utterance_identifier[15]
+                utterance_number = utterance_identifier[16:]
+                return session_number, 'improvisation', improvisation_number, speaker, utterance_number, mocap_source
+            else:
+                session_number = utterance_identifier[3:5]
+                mocap_source = utterance_identifier[5]
+                improvisation_number = utterance_identifier[12:15]
+                speaker = utterance_identifier[16]
+                utterance_number = utterance_identifier[17:]
+                return session_number, 'improvisation', improvisation_number, speaker, utterance_number, mocap_source
         else:
-            session_number = utterance_identifier[3:5]
-            mocap_source = utterance_identifier[5]
-            script_number = utterance_identifier[13:17]
-            speaker = utterance_identifier[18]
-            utterance_number = utterance_identifier[19:]
-            return session_number, 'script', script_number, speaker, utterance_number, mocap_source
+            if re.search(r'script.._._', utterance_identifier):
+                session_number = utterance_identifier[3:5]
+                mocap_source = utterance_identifier[5]
+                script_number = utterance_identifier[13:17]
+                speaker = utterance_identifier[18]
+                utterance_number = utterance_identifier[19:]
+                return session_number, 'script', script_number, speaker, utterance_number, mocap_source
+            else:
+                session_number = utterance_identifier[3:5]
+                mocap_source = utterance_identifier[5]
+                script_number = utterance_identifier[13:18]
+                speaker = utterance_identifier[19]
+                utterance_number = utterance_identifier[20:]
+                return session_number, 'script', script_number, speaker, utterance_number, mocap_source
 
     @staticmethod
     def extract_utterance_identifier(session_number, mocap_source, session_type, sub_session_number,
