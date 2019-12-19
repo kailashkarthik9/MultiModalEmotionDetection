@@ -31,9 +31,9 @@ class LdaPLdaClassifier:
         self.x_test_reduced = None
         if load_pre_trained_model:
             self.lda = pickle.load(
-                open('empirical_results/model/meld_lda_' + str(self.embedding_source.value) + '.pkl', 'rb'))
+                open('empirical_results/models/meld_lda_' + str(self.embedding_source.value) + '.pkl', 'rb'))
             self.p_lda = pickle.load(
-                open('empirical_results/model/meld_p_lda_' + str(self.embedding_source.value) + '.pkl', 'wb'))
+                open('empirical_results/models/meld_p_lda_' + str(self.embedding_source.value) + '.pkl', 'rb'))
         else:
             self.lda = LinearDiscriminantAnalysis(n_components=n_components)
             self.p_lda = Classifier()
@@ -74,7 +74,7 @@ class LdaPLdaClassifier:
         if save_model:
             with open('empirical_results/models/meld_p_lda_' + str(self.embedding_source.value) + '.pkl',
                       'wb') as file_:
-                pickle.dump(self.lda, file_)
+                pickle.dump(self.p_lda, file_)
 
     def get_predictions(self, input_):
         return self.p_lda.predict(input_, normalize_logps=True)
@@ -92,11 +92,26 @@ class LdaPLdaClassifier:
             self.train_lda(True)
             self.reduce_input_dimensions_using_lda()
             self.train_p_lda(True)
+        self.evaluate_model()
+
+    def evaluate_model(self):
         self.evaluate_model_for_input(self.x_train_reduced, self.y_train, 'Train')
         self.evaluate_model_for_input(self.x_test_reduced, self.y_test, 'Test')
 
 
-if __name__ == '__main__':
+def train_on_meld():
     data_file = 'meld/data/dataset_with_multi_modal_embeddings.csv'
-    classifier = LdaPLdaClassifier(data_file, EmbeddingSource.MULTIMODAL)
+    classifier = LdaPLdaClassifier(data_file, EmbeddingSource.TEXT)
     classifier.train_and_evaluate_model()
+
+
+def evaluate_on_iemocap():
+    data_file = 'iemocap/data/dataset_with_multi_modal_embeddings.csv'
+    classifier = LdaPLdaClassifier(data_file, EmbeddingSource.MULTIMODAL, load_pre_trained_model=True)
+    classifier.reduce_input_dimensions_using_lda()
+    classifier.evaluate_model()
+
+
+if __name__ == '__main__':
+    train_on_meld()
+    evaluate_on_iemocap()
