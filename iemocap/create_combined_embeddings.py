@@ -65,7 +65,7 @@ class MultiModalEmbeddingGeneratorIemocap:
 
 
 if __name__ == '__main__':
-    speech_vectors_file_ = 'data/iemocap_xvectors.csv'
+    speech_vectors_file_ = 'data/kaldi/iemocap_xvectors.csv'
     text_vectors_files_ = {
         'Session1': 'data/Session1_word_embedded.csv',
         'Session2': 'data/Session2_word_embedded.csv',
@@ -77,4 +77,3 @@ if __name__ == '__main__':
     # pickle.dump(generator, open('generator.pkl', 'wb'))
     # generator = pickle.load(open('generator.pkl', 'rb'))
     generator.create_multimodal_embeddings('data/dataset_with_multi_modal_embeddings.csv')
-    print('ok')

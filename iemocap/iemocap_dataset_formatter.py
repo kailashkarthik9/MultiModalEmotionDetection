@@ -224,13 +224,15 @@ class IemocapFormatter:
 
 if __name__ == '__main__':
     for session_lf, session_sf in SESSIONS.items():
-        # IemocapFormatter.merge_timing_files('data/' + session_lf + '/dialog/lab/' + session_sf + '_M',
-        #                                     'data/' + session_lf + '/dialog/lab/' + session_sf + '_F',
-        #                                     'data/' + session_lf + '/dialog/lab')
-        # os.makedirs('data/' + session_lf + '/dialog/transcriptions/tsv', exist_ok=True)
-        # IemocapFormatter.convert_transcripts_to_csv('data/' + session_lf + '/dialog/transcriptions', 'data/' + session_lf + '/dialog/transcriptions/tsv')
-        # os.makedirs('data/' + session_lf + '/dialog/EmoEvaluation/csv', exist_ok=True)
-        # IemocapFormatter.convert_labels_to_csv('data/' + session_lf + '/dialog/EmoEvaluation', 'data/' + session_lf + '/dialog/EmoEvaluation/csv')
+        IemocapFormatter.merge_timing_files('data/' + session_lf + '/dialog/lab/' + session_sf + '_M',
+                                            'data/' + session_lf + '/dialog/lab/' + session_sf + '_F',
+                                            'data/' + session_lf + '/dialog/lab')
+        os.makedirs('data/' + session_lf + '/dialog/transcriptions/tsv', exist_ok=True)
+        IemocapFormatter.convert_transcripts_to_csv('data/' + session_lf + '/dialog/transcriptions',
+                                                    'data/' + session_lf + '/dialog/transcriptions/tsv')
+        os.makedirs('data/' + session_lf + '/dialog/EmoEvaluation/csv', exist_ok=True)
+        IemocapFormatter.convert_labels_to_csv('data/' + session_lf + '/dialog/EmoEvaluation',
+                                               'data/' + session_lf + '/dialog/EmoEvaluation/csv')
         IemocapFormatter.aggregate_data('data/' + session_lf + '/dialog/transcriptions/tsv',
                                         'data/' + session_lf + '/dialog/lab',
                                         'data/' + session_lf + '/dialog/EmoEvaluation/csv',

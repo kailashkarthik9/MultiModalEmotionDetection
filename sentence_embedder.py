@@ -82,7 +82,5 @@ class SentenceEmbedder:
 
 if __name__ == '__main__':
     embedder = SentenceEmbedder('bert/uncased/')
-    sentence_embedding = embedder.get_sentence_vector('Here is the sentence I want embeddings for to give to Kailash.')
-    print(sentence_embedding.tolist())
     embedder.embed_dataset('iemocap/data')
     embedder.embed_dataset('meld/data')

@@ -60,6 +60,8 @@ if __name__ == '__main__':
     meld_train = 'meld/data/train_sent_emo_norm_word_embedded.csv'
     meld_test = 'meld/data/test_sent_emo_norm_word_embedded.csv'
     meld_dev = 'meld/data/dev_sent_emo_norm_word_embedded.csv'
+    print('SVM Classifier')
+    print('MELD Dataset')
     classifier = TextEmotionClassifier([meld_test], [meld_train], [meld_dev])
     # classifier.tune_model()
     classifier.train_test_model(alpha=0.1, fit_prior=True, C=10, kernel='rbf', degree=0, gamma=0.1)

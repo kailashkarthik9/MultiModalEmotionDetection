@@ -7,7 +7,7 @@ __uni__ = "ks3740"
 __email__ = "kailashkarthik.s@columbia.edu"
 __status__ = "Development"
 
-model_class, tokenizer_class, pretrained_weights = (BertModel, BertTokenizer, 'bert-base-bert_uncased')
+model_class, tokenizer_class, pretrained_weights = (BertModel, BertTokenizer, 'bert-base-uncased')
 
 config = BertConfig()
 config.output_hidden_states = True

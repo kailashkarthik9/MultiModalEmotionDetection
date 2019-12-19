@@ -62,5 +62,9 @@ if __name__ == '__main__':
         'data/kaldi/xvector.5.ark',
     ]
     embeddings_file_ = 'data/dataset_with_multi_modal_embeddings.csv'
+    reactor = ArkReactor(ark_files_, embeddings_file_, EmbeddingSource.SPEECH)
+    reactor.create_modified_ark()
+    reactor = ArkReactor(ark_files_, embeddings_file_, EmbeddingSource.TEXT)
+    reactor.create_modified_ark()
     reactor = ArkReactor(ark_files_, embeddings_file_, EmbeddingSource.MULTIMODAL)
     reactor.create_modified_ark()

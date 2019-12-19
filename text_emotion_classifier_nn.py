@@ -140,11 +140,11 @@ def test_meld():
 
 def test_iemocap():
     batch_size = 128
-    df_session_1 = pd.read_csv('data/Session1_word_embedded.csv')
-    df_session_2 = pd.read_csv('data/Session2_word_embedded.csv')
-    df_session_3 = pd.read_csv('data/Session3_word_embedded.csv')
-    df_session_4 = pd.read_csv('data/Session4_word_embedded.csv')
-    df_session_5 = pd.read_csv('data/Session5_word_embedded.csv')
+    df_session_1 = pd.read_csv('iemocap/data/Session1_word_embedded.csv')
+    df_session_2 = pd.read_csv('iemocap/data/Session2_word_embedded.csv')
+    df_session_3 = pd.read_csv('iemocap/data/Session3_word_embedded.csv')
+    df_session_4 = pd.read_csv('iemocap/data/Session4_word_embedded.csv')
+    df_session_5 = pd.read_csv('iemocap/data/Session5_word_embedded.csv')
     df = pd.concat([df_session_1, df_session_2, df_session_3, df_session_4, df_session_5], ignore_index=True)
     msk = np.random.rand(len(df)) < 0.8
     train = df[msk]
@@ -154,4 +154,8 @@ def test_iemocap():
 
 
 if __name__ == '__main__':
-    print('ok')
+    print('Neural Network Classifier')
+    print('MELD Results')
+    test_meld()
+    print('IEMOCAP Results')
+    test_iemocap()

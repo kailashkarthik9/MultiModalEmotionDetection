@@ -89,3 +89,7 @@ if __name__ == '__main__':
     embeddings_file_ = 'data/dataset_with_multi_modal_embeddings.csv'
     reactor = SessionArkReactor(ark_files_, embeddings_file_, EmbeddingSource.TEXT)
     reactor.create_session_wise_arks()
+    reactor = SessionArkReactor(ark_files_, embeddings_file_, EmbeddingSource.SPEECH)
+    reactor.create_session_wise_arks()
+    reactor = SessionArkReactor(ark_files_, embeddings_file_, EmbeddingSource.MULTIMODAL)
+    reactor.create_session_wise_arks()

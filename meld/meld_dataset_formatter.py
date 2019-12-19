@@ -26,6 +26,9 @@ MELD_EMOTION_MAP = {
 
 
 class MeldFormatter:
+    """
+    This class is used to format the MELD CSVs to normalize the emotion labels and add an ordinal emotion column
+    """
     def __init__(self, csv_file):
         self.data = pd.read_csv(csv_file)
         self.special_characters = {
@@ -60,8 +63,9 @@ class MeldFormatter:
 
 
 if __name__ == '__main__':
-    source_csv = 'data/dev_sent_emo.csv'
-    target_csv = source_csv.replace('_emo', '_emo_norm')
-    formatter = MeldFormatter(source_csv)
-    formatter.format_emotion_labels()
-    formatter.write_formatted_data(target_csv)
+    for split in ['dev', 'test', 'train']:
+        source_csv = 'data/' + split + '_sent_emo.csv'
+        target_csv = source_csv.replace('_emo', '_emo_norm_2')
+        formatter = MeldFormatter(source_csv)
+        formatter.format_emotion_labels()
+        formatter.write_formatted_data(target_csv)

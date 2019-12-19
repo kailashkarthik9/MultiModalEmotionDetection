@@ -57,7 +57,7 @@ class MultiModalEmbeddingGeneratorMeld:
 
 
 if __name__ == '__main__':
-    speech_vectors_file_ = 'data/meld_xvectors.csv'
+    speech_vectors_file_ = 'data/kaldi/meld_xvectors.csv'
     text_vectors_files_ = {
         'dev': 'data/dev_sent_emo_norm_word_embedded.csv',
         'train': 'data/train_sent_emo_norm_word_embedded.csv',
@@ -65,4 +65,3 @@ if __name__ == '__main__':
     }
     generator = MultiModalEmbeddingGeneratorMeld(speech_vectors_file_, text_vectors_files_)
     generator.create_multimodal_embeddings('data/dataset_with_multi_modal_embeddings.csv')
-    print('ok')
