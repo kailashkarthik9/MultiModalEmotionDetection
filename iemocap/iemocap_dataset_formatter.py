@@ -5,6 +5,11 @@ import re
 import numpy as np
 import pandas as pd
 
+__author__ = "Kailash Karthik S"
+__uni__ = "ks3740"
+__email__ = "kailashkarthik.s@columbia.edu"
+__status__ = "Development"
+
 attributes = [
     'Sr.No',
     'Utterance',

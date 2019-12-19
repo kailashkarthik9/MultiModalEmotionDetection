@@ -4,6 +4,11 @@ import unittest
 
 import kaldi_io
 
+__author__ = "Kailash Karthik S"
+__uni__ = "ks3740"
+__email__ = "kailashkarthik.s@columbia.edu"
+__status__ = "Development"
+
 
 class TestArkReactor(unittest.TestCase):
     def test_modified_arks(self):

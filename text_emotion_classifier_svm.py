@@ -5,6 +5,11 @@ from sklearn import svm
 from sklearn.metrics import accuracy_score, f1_score
 from sklearn.model_selection import GridSearchCV
 
+__author__ = "Kailash Karthik S"
+__uni__ = "ks3740"
+__email__ = "kailashkarthik.s@columbia.edu"
+__status__ = "Development"
+
 
 class TextEmotionClassifier:
     def __init__(self, test_files, train_files, dev_files):

@@ -1,8 +1,13 @@
+import matplotlib.pyplot as plt
 import torch
 from transformers import BertModel, BertTokenizer, BertConfig
 
+__author__ = "Kailash Karthik S"
+__uni__ = "ks3740"
+__email__ = "kailashkarthik.s@columbia.edu"
+__status__ = "Development"
+
 model_class, tokenizer_class, pretrained_weights = (BertModel, BertTokenizer, 'bert-base-bert_uncased')
-# model_class, tokenizer_class, pretrained_weights = (BertModel,       BertTokenizer,       'bert/')
 
 config = BertConfig()
 config.output_hidden_states = True
@@ -53,15 +58,15 @@ with torch.no_grad():
 
     print("Number of hidden units:", len(last_hidden_state[batch_i][token_i]))
 
-    # # For the 5th token in our sentence, select its feature values from layer 5.
-    # token_i = 5
-    # layer_i = 5
-    # vec = hidden_states[layer_i][batch_i][token_i]
-    #
-    # # Plot the values as a histogram to show their distribution.
-    # plt.figure(figsize=(10, 10))
-    # plt.hist(vec, bins=200)
-    # plt.show()
+    # For the 5th token in our sentence, select its feature values from layer 5.
+    token_i = 5
+    layer_i = 5
+    vec = hidden_states[layer_i][batch_i][token_i]
+
+    # Plot the values as a histogram to show their distribution.
+    plt.figure(figsize=(10, 10))
+    plt.hist(vec, bins=200)
+    plt.show()
 
     # # # Re-ordering the hidden states to be token-major
 

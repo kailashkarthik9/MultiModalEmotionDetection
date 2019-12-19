@@ -2,6 +2,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.io import loadmat
 
+__author__ = "Kailash Karthik S"
+__uni__ = "ks3740"
+__email__ = "kailashkarthik.s@columbia.edu"
+__status__ = "Development"
+
 
 class EmoVoxCelebDatasetFormatter:
     """

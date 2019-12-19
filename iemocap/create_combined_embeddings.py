@@ -2,6 +2,11 @@ from ast import literal_eval
 
 import pandas as pd
 
+__author__ = "Kailash Karthik S"
+__uni__ = "ks3740"
+__email__ = "kailashkarthik.s@columbia.edu"
+__status__ = "Development"
+
 
 class MultiModalEmbeddingGeneratorIemocap:
     def __init__(self, speech_vectors_file, text_vectors_files):

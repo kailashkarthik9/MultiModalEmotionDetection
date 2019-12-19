@@ -1,5 +1,11 @@
 import pandas as pd
 
+__author__ = "Kailash Karthik S"
+__uni__ = "ks3740"
+__email__ = "kailashkarthik.s@columbia.edu"
+__status__ = "Development"
+
+
 EMOTION_IDS = {
     'anger/disgust': 0,
     'fear/surprise': 1,

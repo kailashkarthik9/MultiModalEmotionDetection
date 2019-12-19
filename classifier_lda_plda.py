@@ -10,6 +10,11 @@ from sklearn.utils import shuffle
 
 from plda.classifier import Classifier
 
+__author__ = "Kailash Karthik S, Jessica Huynh"
+__uni__ = "ks3740, jyh2127"
+__email__ = "kailashkarthik.s@columbia.edu, jyh2127@columbia.edu"
+__status__ = "Development"
+
 
 class EmbeddingSource(Enum):
     TEXT = 'TextEmbeddings'
@@ -18,10 +23,6 @@ class EmbeddingSource(Enum):
 
 
 class LdaPLdaClassifier:
-    """
-    This class is co-authored by Jessica (jessica's UNI)
-    """
-
     def __init__(self, data_file, embedding_source: EmbeddingSource, n_components=200, load_pre_trained_model=False):
         input_, output_ = self.load_data(data_file, embedding_source)
         self.embedding_source = embedding_source

@@ -9,6 +9,12 @@ from sklearn.metrics import f1_score
 from torch import optim
 from torch.utils.data import DataLoader, TensorDataset
 
+__author__ = "Kailash Karthik S"
+__uni__ = "ks3740"
+__email__ = "kailashkarthik.s@columbia.edu"
+__status__ = "Development"
+
+
 USE_CUDA = torch.cuda.is_available()
 
 

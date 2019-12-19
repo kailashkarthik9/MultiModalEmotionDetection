@@ -6,6 +6,10 @@ import pandas as pd
 import torch
 from transformers import BertModel, BertTokenizer, BertConfig
 
+__author__ = "Kailash Karthik S"
+__uni__ = "ks3740"
+__email__ = "kailashkarthik.s@columbia.edu"
+__status__ = "Development"
 
 class SentenceEmbedder:
     def __init__(self, model_name_or_path='bert-base-bert_uncased'):

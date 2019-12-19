@@ -7,6 +7,11 @@ import pandas as pd
 
 from classifier_lda_plda import EmbeddingSource
 
+__author__ = "Kailash Karthik S"
+__uni__ = "ks3740"
+__email__ = "kailashkarthik.s@columbia.edu"
+__status__ = "Development"
+
 
 class ArkReactor:
     def __init__(self, ark_files, embeddings_file, embedding_source: EmbeddingSource):
