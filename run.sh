@@ -6,22 +6,6 @@
 # 4. Create arks with speech, text and multimodal vectors for each utterance to be used for Kaldi LDA-PLDA
 ###
 
-
-# Create the required directory structure
-mkdir meld/data
-mkdir meld/data/language_model
-mkdir meld/data/kaldi
-mkdir meld/data/kaldi/modified
-
-mkdir iemocap/data
-mkdir iemocap/data/kaldi
-mkdir iemocap/data/kaldi/modified
-
-###
-# Extract MELD and IEMOCAP datasets into meld/data and iemocap/data respectively.
-# The data is not committed with the code since they might require permission from the authors to use and distribute
-###
-
 # Format the MELD data CSV to normalize the emotion labels and create an ordinal attribute
 python meld/meld_dataset_formatter.py
 
@@ -32,9 +16,6 @@ python iemocap/iemocap_dataset_formatter.py
 python meld/prepare_bert_train_data.py
 
 # Run BERT LM Finetuning - might require a GPU/TPU to execute fast
-mkdir bert
-mkdir bert/cased
-mkdir bert/uncased
 python run_lm_finetuning.py --train_data_file='meld/data/language_model/utterances_text.txt' --output_dir='bert/uncased' --do_train --mlm --model_name_or_path="bert-base-uncased"
 python run_lm_finetuning.py --train_data_file='meld/data/language_model/utterances_text.txt' --output_dir='bert/cased' --do_train --mlm --model_name_or_path="bert-base-cased"
 
