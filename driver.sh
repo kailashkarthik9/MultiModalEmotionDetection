@@ -50,6 +50,8 @@ cp -a kaldi/path_to_meld_xvectors/. MultiModalEmotionDetection/meld/data/kaldi/
 cp -a kaldi/path_to_iemocap_xvectors/. MultiModalEmotionDetection/iemocap/data/kaldi/
 
 # Run the text processing code to create fine-tuned BERT and multi-modal embedding ark files
+echo "The follwing code expects that MELD and IEMOCAP datasets are downloaded and extracted into the following directories:"
+echo "MultiModalEmotionDetection/meld/data and MultiModalEmotionDetection/iemocap/data"
 cd MultiModalEmotionDetection || exit
 sh run.sh
 cd ..
