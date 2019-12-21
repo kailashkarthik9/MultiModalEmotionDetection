@@ -56,6 +56,7 @@ echo "The follwing code expects that MELD and IEMOCAP datasets are downloaded an
 echo "MultiModalEmotionDetection/meld/data and MultiModalEmotionDetection/iemocap/data"
 cd MultiModalEmotionDetection || exit
 sh run.sh
+sh ark_reactor.sh
 cd ..
 
 # Copy the created ark files to kaldi for LDA-PLDA
@@ -83,7 +84,7 @@ cp -a kaldi/egs/voxceleb/v2/iemocap/outputs/xvectors_train_refined/. MultiModalE
 
 # Run the text processing code to create fine-tuned BERT and multi-modal embedding ark files
 cd MultiModalEmotionDetection || exit
-sh run.sh
+sh ark_reactor.sh
 cd ..
 
 # Copy the created ark files to kaldi for LDA-PLDA
