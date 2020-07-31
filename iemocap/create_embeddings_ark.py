@@ -73,20 +73,20 @@ class SessionArkReactor:
         session_wise_speech_arks = self.cluster_arks(self.speech_arks)
         modified_ark_components = self.get_modified_ark_components(session_wise_speech_arks)
         for session, components in modified_ark_components:
-            with open('data/kaldi/modified/' + self.get_modified_file_name(session), 'wb') as file_:
+            with open('iemocap/data/kaldi/modified/' + self.get_modified_file_name(session), 'wb') as file_:
                 for key, vector in components:
                     kaldi_io.write_vec_flt(file_, np.array(vector), key)
 
 
 if __name__ == '__main__':
     ark_files_ = [
-        'data/kaldi/xvector.1.ark',
-        'data/kaldi/xvector.2.ark',
-        'data/kaldi/xvector.3.ark',
-        'data/kaldi/xvector.4.ark',
-        'data/kaldi/xvector.5.ark',
+        'iemocap/data/kaldi/xvector.1.ark',
+        'iemocap/data/kaldi/xvector.2.ark',
+        'iemocap/data/kaldi/xvector.3.ark',
+        'iemocap/data/kaldi/xvector.4.ark',
+        'iemocap/data/kaldi/xvector.5.ark',
     ]
-    embeddings_file_ = 'data/dataset_with_multi_modal_embeddings.csv'
+    embeddings_file_ = 'iemocap/data/dataset_with_multi_modal_embeddings.csv'
     reactor = SessionArkReactor(ark_files_, embeddings_file_, EmbeddingSource.TEXT)
     reactor.create_session_wise_arks()
     reactor = SessionArkReactor(ark_files_, embeddings_file_, EmbeddingSource.SPEECH)
