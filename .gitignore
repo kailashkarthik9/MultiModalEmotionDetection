@@ -1,11 +1,11 @@
 /.idea/
 /bert/cased/
 /bert/uncased/
-/emovox/teacher_model_analysis/data/
-/emovox/teacher_model_analysis/emovox_logits.npy
-/emovox/teacher_model_analysis/emovox_logits_utterance_major.npy
-/emovox/teacher_model_analysis/formatter.obj
-/emovox/teacher_model_analysis/voxceleb.obj
+/dataset/analysis/emovox/teacher_model_analysis/data/
+/dataset/analysis/emovox/teacher_model_analysis/emovox_logits.npy
+/dataset/analysis/emovox/teacher_model_analysis/emovox_logits_utterance_major.npy
+/dataset/analysis/emovox/teacher_model_analysis/formatter.obj
+/dataset/analysis/emovox/teacher_model_analysis/voxceleb.obj
 /iemocap/data/
 /meld/data/
 /jessica_meld/
