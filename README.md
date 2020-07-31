@@ -14,7 +14,7 @@
 
 ### Multi-Modal Emotion Detection
 
-* Refer to `kaldi-lda-plda/` for instructions and code for the downstream multimodal task.
+* Refer to `kaldi-plda/` for instructions and code for the downstream multimodal task.
 
 ### Pre-trained Models
 
