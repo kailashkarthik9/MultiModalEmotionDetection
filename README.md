@@ -1,6 +1,6 @@
 ## Cross-Domain Emotion Detection using Transfer of Multi-modal Embeddings
 
-### Authors : Kailash Karthik S and Amith Ananthram
+### Authors : Kailash Karthik S, Amith Ananthram and Jessica Huynh
 
 #### kailashkarthik.s@columbia.edu, amith.ananthram@columbia.edu
 
